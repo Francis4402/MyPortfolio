@@ -95,11 +95,11 @@ const Contact = () => {
       <div className="container max-w-6xl">
         <div className="grid lg:flex justify-between gap-10 items-center">
 
-          <motion.div variants={slideIn("left", "tween", 0.2, 1)}>
+          <motion.div>
             <LottiePi />
           </motion.div>
 
-          <motion.div variants={slideIn("right", "tween", 0.2, 1)}>
+          <motion.div>
             <div className="max-w-5xl bg-black-100 p-8 rounded-2xl">
 
               <p className={styles.sectionSubText}>Get in touch</p>

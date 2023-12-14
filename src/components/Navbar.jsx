@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
 import {motion} from "framer-motion";
+import gsap from "gsap";
 
 const PDFFileURL = 'https://francis-portfolio4402.netlify.app/MyCV.pdf'
 const Navbar = () => {
@@ -12,6 +13,19 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  useEffect(() => {
+    gsap.fromTo(
+        ".nav-link",
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.5,
+          stagger: 0.2,
+        }
+    );
+  }, []);
   const handeDownload = (url) => {
     const filename = url.split('/').pop();
       const aTag = document.createElement('a')
@@ -37,6 +51,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    gsap.fromTo(
+        ".navbar-text",
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.5,
+        }
+    );
+  }, []);
+
   return (
     <nav
       className={`${
@@ -45,7 +72,7 @@ const Navbar = () => {
         scrolled ? "bg-primary" : "bg-transparent"
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-6xl mx-auto'>
+      <div className='w-full flex justify-between items-center max-w-6xl mx-auto navbar-text'>
         <Link
           to='/'
           className='flex items-center gap-2'
@@ -55,7 +82,7 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
+          <p className='text-white text-[18px] font-bold cursor-pointer flex'>
             Francis &nbsp;
             <span className='sm:block hidden'>| Portfolio</span>
           </p>
@@ -67,7 +94,7 @@ const Navbar = () => {
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } hover:text-white text-[18px] font-medium cursor-pointer nav-link`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
